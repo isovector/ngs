@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.32.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7120cf07ecc695cfb7bd86f2cfcfcea2d000910a0f2290494c84aa031239225d
+-- hash: 530a9b681bd9845ba53263775ecf37e817e25e9d50cda601a227d30d8f6564ae
 
 name:           ngs
 version:        0.1.0.0
@@ -40,6 +40,7 @@ library
   ghc-options: -fplugin=Polysemy.Plugin
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , polysemy
     , polysemy-plugin
   default-language: Haskell2010
@@ -54,6 +55,7 @@ executable ngs-exe
   ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , ngs
     , polysemy
     , polysemy-plugin
@@ -70,6 +72,7 @@ test-suite ngs-test
   ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , ngs
     , polysemy
     , polysemy-plugin

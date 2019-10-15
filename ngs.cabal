@@ -1,0 +1,72 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 22b5ebee57cdaee6a2365ad315e089dd8756ceabc83cbba5d1a4f791a96a1525
+
+name:           ngs
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/isovector/ngs#readme>
+homepage:       https://github.com/isovector/ngs#readme
+bug-reports:    https://github.com/isovector/ngs/issues
+author:         Sandy Maguire
+maintainer:     sandy@sandymaguire.me
+copyright:      2019 Sandy Maguire
+license:        Apache-2.0
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/isovector/ngs
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_ngs
+  hs-source-dirs:
+      src
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
+  ghc-options: -fplugin=Polysemy.Plugin
+  build-depends:
+      base >=4.7 && <5
+    , polysemy
+    , polysemy-plugin
+  default-language: Haskell2010
+
+executable ngs-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_ngs
+  hs-source-dirs:
+      app
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
+  ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , ngs
+    , polysemy
+    , polysemy-plugin
+  default-language: Haskell2010
+
+test-suite ngs-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_ngs
+  hs-source-dirs:
+      test
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
+  ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , ngs
+    , polysemy
+    , polysemy-plugin
+  default-language: Haskell2010

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 22b5ebee57cdaee6a2365ad315e089dd8756ceabc83cbba5d1a4f791a96a1525
+-- hash: 7120cf07ecc695cfb7bd86f2cfcfcea2d000910a0f2290494c84aa031239225d
 
 name:           ngs
 version:        0.1.0.0
@@ -27,7 +27,11 @@ source-repository head
 
 library
   exposed-modules:
+      Lang
       Lib
+      Sem.IPFS
+      Sem.Metadata
+      Types
   other-modules:
       Paths_ngs
   hs-source-dirs:

@@ -1,5 +1,6 @@
-ngs
-===
+# ngs
+
+[![Build Status](https://api.travis-ci.org/isovector/ngs.svg?branch=master)](https://travis-ci.org/isovector/ngs)
 
 No giant strings!
 

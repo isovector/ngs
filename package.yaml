@@ -21,12 +21,17 @@ description:         Please see the README on GitHub at <https://github.com/isov
 
 dependencies:
 - base >= 4.7 && < 5
+- hie-bios
+- syb
 - polysemy
 - polysemy-plugin
 - bytestring
+- containers
+- ghc
 
 ghc-options:
   - -fplugin=Polysemy.Plugin
+  - -Wall
 
 default-extensions:
   - DataKinds
@@ -56,12 +61,16 @@ executables:
 
 tests:
   ngs-test:
-    main:                Spec.hs
+    main:                Main.hs
     source-dirs:         test
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    build-tools:
+    - hspec-discover
     dependencies:
     - ngs
+    - inspection-testing
+    - hspec
 

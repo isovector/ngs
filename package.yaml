@@ -1,7 +1,7 @@
 name:                ngs
 version:             0.1.0.0
 github:              "isovector/ngs"
-license:             Apache2
+license:             Apache-2.0
 author:              "Sandy Maguire"
 maintainer:          "sandy@sandymaguire.me"
 copyright:           "2019 Sandy Maguire"

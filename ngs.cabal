@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 89ecfd44860e818696d17a9e3192c168b814b714abee44904b6a1fd1ebbca5fd
+-- hash: 1c1dd32c8b5d4a72ee81a8fa9701c50a516b300182a01564d66fb6144b67d5e8
 
 name:           ngs
 version:        0.1.0.0
@@ -45,7 +45,7 @@ library
     , bytestring
     , containers
     , ghc
-    , hie-bios
+    , ghc-exactprint
     , polysemy
     , polysemy-plugin
     , syb
@@ -64,7 +64,7 @@ executable ngs-exe
     , bytestring
     , containers
     , ghc
-    , hie-bios
+    , ghc-exactprint
     , ngs
     , polysemy
     , polysemy-plugin
@@ -88,7 +88,7 @@ test-suite ngs-test
     , bytestring
     , containers
     , ghc
-    , hie-bios
+    , ghc-exactprint
     , hspec
     , inspection-testing
     , ngs

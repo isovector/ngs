@@ -11,7 +11,6 @@ import           Data.List
 import           Data.Map (Map)
 import qualified Data.Map as M
 import           GHC (TypecheckedModule (..), unLoc, RdrName (..), noLoc)
-import           HIE.Bios.Load
 import           HsSyn
 import           Lang
 import           OccName
@@ -34,29 +33,20 @@ instance LanguageAdapter Haskell where
   data AST Haskell = HaskellAST (HsBindLR GhcRn GhcRn)
   type ExtraEffs Haskell = '[Embed IO]
 
-  normalise (SourceCode src) = do
-    embed $ writeFile "/tmp/myfile.hs" src
-    z <- embed
+  normalise src = do
+    x <- embed
        . runGHC "."
-       . embed @Ghc
-       -- TODO(sandy): make sure that children nodes are ordered deterministically
-       $ loadFile ("/tmp/myfile.hs", "/tmp/myfile.hs")
-    case z of
-      Just (tymodule, _) -> do
-        case tm_renamed_source tymodule of
-          Nothing -> throw SomethingFailed
-          Just (x, _, _, _) -> do
-            let binds = getBinds $ hs_valds x
-            maybe_free_hashes <- fmap sequenceA $ traverse lookupAndKnow $ getFreeVars binds
-            case maybe_free_hashes of
-              Nothing -> throw MissingHashes
-              Just free_hashes -> do
-      -- TODO(sandy): there's a bug here where free vars are free in the function but not in the program itself. we actually want to replace all the free vars!!!
-                pure $ fmap HaskellAST
-                     $ replaceFreeVars  -- here!
-                         (M.fromList $ fmap (mkVarOcc . unName *** hashToOccName) free_hashes)
-                     $ binds
-      Nothing -> error "dang i didnt typecheck"
+       $ getBindingGroups src
+    let binds = getBinds $ hs_valds x
+    maybe_free_hashes <- fmap sequenceA $ traverse lookupAndKnow $ getFreeVars binds
+    case maybe_free_hashes of
+      Nothing -> throw MissingHashes
+      Just free_hashes -> do
+    -- TODO(sandy): there's a bug here where free vars are free in the function but not in the program itself. we actually want to replace all the free vars!!!
+        pure $ fmap HaskellAST
+             $ replaceFreeVars  -- here!
+                 (M.fromList $ fmap (mkVarOcc . unName *** hashToOccName) free_hashes)
+             $ binds
 
   -- TODO(sandy): make this thing dump names back into scope
   render (HaskellAST expr) =

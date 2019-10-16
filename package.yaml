@@ -21,13 +21,13 @@ description:         Please see the README on GitHub at <https://github.com/isov
 
 dependencies:
 - base >= 4.7 && < 5
-- hie-bios
 - syb
 - polysemy
 - polysemy-plugin
 - bytestring
 - containers
 - ghc
+- ghc-exactprint
 
 ghc-options:
   - -fplugin=Polysemy.Plugin

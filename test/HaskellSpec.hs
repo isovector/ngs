@@ -25,7 +25,7 @@ spec = describe "Haskell language adapter" $ do
       n <- normalise @Haskell
          $ SourceCode
          $ unlines
-             [ "foo :: Int"
+             [ "foo :: ()"
              , "foo = turtles 5 6"
              ]
       traverse render n

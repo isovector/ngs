@@ -1,4 +1,3 @@
-{-# LANGUAGE BlockArguments  #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 module Sem.HashStore where

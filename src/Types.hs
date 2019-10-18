@@ -1,5 +1,7 @@
 module Types where
 
+import Data.ByteString (ByteString)
+
 newtype Name = Name String
-newtype Hash = Hash String
+newtype Hash = Hash ByteString
 newtype SourceCode = SourceCode String

@@ -24,6 +24,7 @@ dependencies:
 - polysemy
 - polysemy-plugin
 - bytestring
+- directory
 
 ghc-options:
   - -fplugin=Polysemy.Plugin

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0cc7e141e258301e864735a92e1bbc0c011eead79db839832e48a9572deb07a8
+-- hash: 7218ea1f225f1761221473ab6da1c30732d1b071b7cffe7e25db2f66283b9b60
 
 name:           ngs
 version:        0.1.0.0
@@ -27,21 +27,23 @@ source-repository head
 
 library
   exposed-modules:
-      Lang
       Lib
+      Sem.Filesystem
       Sem.IPFS
       Sem.Metadata
+      Sem.Stage
       Types
   other-modules:
       Paths_ngs
   hs-source-dirs:
       src
   default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
-  ghc-options: -fplugin=Polysemy.Plugin
+  ghc-options: -fplugin=Polysemy.Plugin -Wall
   build-depends:
       base >=4.7 && <5
     , bytestring
     , directory
+    , hashable
     , polysemy
     , polysemy-plugin
   default-language: Haskell2010
@@ -53,11 +55,12 @@ executable ngs-exe
   hs-source-dirs:
       app
   default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
-  ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -fplugin=Polysemy.Plugin -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
     , bytestring
     , directory
+    , hashable
     , ngs
     , polysemy
     , polysemy-plugin
@@ -71,11 +74,12 @@ test-suite ngs-test
   hs-source-dirs:
       test
   default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
-  ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -fplugin=Polysemy.Plugin -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
     , bytestring
     , directory
+    , hashable
     , ngs
     , polysemy
     , polysemy-plugin

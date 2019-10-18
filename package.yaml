@@ -25,9 +25,11 @@ dependencies:
 - polysemy-plugin
 - bytestring
 - directory
+- hashable
 
 ghc-options:
   - -fplugin=Polysemy.Plugin
+  - -Wall
 
 default-extensions:
   - DataKinds

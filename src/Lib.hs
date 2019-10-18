@@ -6,10 +6,12 @@ import Prelude hiding (lookup)
 import Types
 import qualified Data.ByteString.Char8 as BS
 
+
 data Command
   = NameToHash String -- --> Maybe String
   | Error String
   deriving (Eq, Ord, Show, Read)
+
 
 main :: IO ()
 main = runM . filesystemToIO . metadataToFilesystem $ do

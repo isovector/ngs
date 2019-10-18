@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7218ea1f225f1761221473ab6da1c30732d1b071b7cffe7e25db2f66283b9b60
+-- hash: 36354c87d3db210e76026b69d6bbf5b2dbf6eb9aa0bd75cc8cc630e5ea1db7e4
 
 name:           ngs
 version:        0.1.0.0
@@ -29,7 +29,7 @@ library
   exposed-modules:
       Lib
       Sem.Filesystem
-      Sem.IPFS
+      Sem.HashStore
       Sem.Metadata
       Sem.Stage
       Types

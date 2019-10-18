@@ -1,10 +1,13 @@
 module Lib where
 
-import Polysemy
-import Sem.Metadata
-import Prelude hiding (lookup)
-import Types
 import qualified Data.ByteString.Char8 as BS
+import           Polysemy
+import           Prelude hiding (lookup)
+import           Sem.Filesystem
+import           Sem.HashStore
+import           Sem.Metadata
+import           Sem.Stage
+import           Types
 
 
 data Command
@@ -14,10 +17,10 @@ data Command
 
 
 main :: IO ()
-main = runM . filesystemToIO . metadataToFilesystem $ do
+main = runM . filesystemToIO . metadataToFilesystem . hashStoreToFilesystem . runStage $ do
   cmd <- embed $ readLn @Command
   case cmd of
     NameToHash name -> do
-      z <- fmap (fmap (BS.unpack . getHash)) $ lookup $ Name name
+      z <- fmap (fmap $ BS.unpack . getHash) $ lookup $ Name name
       embed $ print z
 

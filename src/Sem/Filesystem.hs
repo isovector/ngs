@@ -5,8 +5,11 @@ module Sem.Filesystem where
 import           Data.Bool
 import           Data.ByteString (ByteString)
 import qualified Data.ByteString.Char8 as BS
+import           Data.List
+import qualified Data.Map as M
 import           Data.Maybe
 import           Polysemy
+import           Polysemy.State
 import qualified Prelude as P
 import           Prelude hiding (writeFile, readFile)
 import           System.Directory
@@ -38,4 +41,17 @@ filesystemToIO = interpret $ \case
         fmap (bool Nothing (Just p) . (== BS.unpack contents))
           $ P.readFile p
       ) =<< listDirectory path
+
+
+pureFilesystem
+    :: Member (State (M.Map FilePath ByteString)) r
+    => Sem (Filesystem ': r) a
+    -> Sem r a
+pureFilesystem = interpret $ \case
+  WriteFile file contents -> modify $ M.insert file contents
+  ReadFile file -> gets $ M.lookup file
+  DeleteFile file -> modify $ M.delete file
+  Grep path thing -> do
+    assocs <- gets M.assocs
+    pure $ fmap fst $ filter (\(fp, c) -> fp `isPrefixOf` path && thing == c) assocs
 

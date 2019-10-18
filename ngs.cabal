@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 36354c87d3db210e76026b69d6bbf5b2dbf6eb9aa0bd75cc8cc630e5ea1db7e4
+-- hash: 7ea1c03bcc480c03de2ffd43d6c887b2fb75d65c78495991dfcaa11c86861ec6
 
 name:           ngs
 version:        0.1.0.0
@@ -42,10 +42,12 @@ library
   build-depends:
       base >=4.7 && <5
     , bytestring
+    , containers
     , directory
     , hashable
     , polysemy
     , polysemy-plugin
+    , select
   default-language: Haskell2010
 
 executable ngs-exe
@@ -59,11 +61,13 @@ executable ngs-exe
   build-depends:
       base >=4.7 && <5
     , bytestring
+    , containers
     , directory
     , hashable
     , ngs
     , polysemy
     , polysemy-plugin
+    , select
   default-language: Haskell2010
 
 test-suite ngs-test
@@ -78,9 +82,11 @@ test-suite ngs-test
   build-depends:
       base >=4.7 && <5
     , bytestring
+    , containers
     , directory
     , hashable
     , ngs
     , polysemy
     , polysemy-plugin
+    , select
   default-language: Haskell2010

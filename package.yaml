@@ -26,6 +26,8 @@ dependencies:
 - bytestring
 - directory
 - hashable
+- select
+- containers
 
 ghc-options:
   - -fplugin=Polysemy.Plugin
